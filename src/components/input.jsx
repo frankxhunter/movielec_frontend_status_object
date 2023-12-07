@@ -8,7 +8,7 @@ export function InputNumber({ changeNumber}) {
         setNumber("")
     }
     return <>
-        <input type="text" value={number} onInput={ (e)=>validarNumero(e)} onChange={(e)=>{setNumber(e.target.value)}} />
+        <input type="text" placeholder="Numero de telefono" value={number} onInput={ (e)=>validarNumero(e)} onChange={(e)=>{setNumber(e.target.value)}} />
         <button onClick={()=>{action()}} >Buscar</button>
     </>
 }
