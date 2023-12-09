@@ -1,5 +1,8 @@
 {
     "getOrdens": "http://localhost:3000/objects",
     "getAllAdmin": "http://localhost:3000/admin/objects",
-    "delete": "http://localhost:3000/admin/objects"
+    "delete": "http://localhost:3000/admin/objects",
+    "getStatus": "http://localhost:3000/objects/status",
+    "create": "http://localhost:3000/admin/objects",
+    "update": "http://localhost:3000/admin/objects"
 }

@@ -3,12 +3,14 @@ import { useEffect, useState } from "react"
 import urls from "../../urls.json"
 import { Password } from "../components/password";
 import { CardEdit } from "../components/cardEdit";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
     const [filter, setFilter] = useState("");
     const [isAvanced, setIsAvanced] = useState(false);
     const [password, setPassword] = useState(localStorage.getItem("password") ?? "")
     const [asyncComponent, setAsyncComponent] = useState(null);
+    const navigate = useNavigate();
 
     function setPasswordInLocalStorage(password){
         setPassword(password);
@@ -58,6 +60,7 @@ export default function App() {
                     <input type="text" placeholder="Numero de orden" value={filter} onChange={e => setFilter(e.target.value)} />
                     <div><input type="checkbox" value={isAvanced} onChange={changeSearchAvanced} />Busqueda avanzada</div>
                 </div>
+                <button onClick={()=>{navigate("/createAdmin")}} >Añadir nuevo</button>
                 {data.map((orden) => {
                     return <CardEdit
                         key={orden.id}
@@ -65,14 +68,16 @@ export default function App() {
                         cliente={orden.cliente}
                         fechaPrevista={orden.fechaPrevista}
                         estado={orden.estado}
+                        numeroTelefonico={orden.numeroTelefonico}
                         notas={orden.notas}
                         axios={axiosInstance}
-                        id={orden.id} />
+                        id={orden.id}
+                        update={fetchData} />
                 })}
             </>)
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                return setAsyncComponent(<Password value={password} setValue={setPassword} message="Contraseña de administrar invalida" />)
+                return setAsyncComponent(<Password value={password} setValue={setPassword} message="Contraseña de administrador invalida" />)
             }
             console.log(error)
             setAsyncComponent(<h1>Error</h1>)
