@@ -12,7 +12,6 @@ import {
 
 import {loader as loaderToModificate} from "./routes/modificateData"
 import './index.css'
-import { Formulario } from './components/formData'
 
 const router = createBrowserRouter([
   {
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/createAdmin",
-    element: <Formulario/>,
+    element: <CreateData/>,
     loader: loaderToModificate,
   }
 ])

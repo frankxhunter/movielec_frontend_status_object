@@ -63,15 +63,9 @@ export default function App() {
                 <button onClick={()=>{navigate("/createAdmin")}} >Añadir nuevo</button>
                 {data.map((orden) => {
                     return <CardEdit
+                        {...orden}
                         key={orden.id}
-                        orden={orden.orden}
-                        cliente={orden.cliente}
-                        fechaPrevista={orden.fechaPrevista}
-                        estado={orden.estado}
-                        numeroTelefonico={orden.numeroTelefonico}
-                        notas={orden.notas}
                         axios={axiosInstance}
-                        id={orden.id}
                         update={fetchData} />
                 })}
             </>)
