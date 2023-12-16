@@ -1,20 +1,23 @@
 import urls from "../../urls.json"
 
-import {  useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { axiosInstance } from "../methods"
 // eslint-disable-next-line react/prop-types
-export function CardEdit({ orden, cliente, fechaPrevista, estado, notas,numeroTelefonico, axios, id, update }) {
+export function CardEdit({ orden, cliente, fechaPrevista, estado, notas, numeroTelefonico, id,  update }) {
 
     const navigate = useNavigate()
     async function actionDelete() {
-        if(!confirm("Seguro q desea borrar este elemento?")){
+        if (!confirm("Seguro q desea borrar este elemento?")) {
             return null
         }
         try {
             // eslint-disable-next-line react/prop-types
-            const deleted = await axios.delete(urls.delete + "/" + id)
+            await axiosInstance().delete(urls.delete + "/" + id)
             update()
-            console.log(deleted)
         } catch (error) {
+            if (error.response && error.response.status === 401) {
+                update()
+            }
             console.log(error)
         }
     }
@@ -26,7 +29,7 @@ export function CardEdit({ orden, cliente, fechaPrevista, estado, notas,numeroTe
         <div className="card_numeroTelefonico">{numeroTelefonico}</div>
         <div className="card_orden" >{fechaPrevista}</div>
         <p className="card_orden" >{notas}</p>
-        <button onClick={()=> navigate(`/editAdmin/${numeroTelefonico}`)}>Editar</button>
+        <button onClick={() => navigate(`/editAdmin/${numeroTelefonico}`)}>Editar</button>
         <button onClick={actionDelete} >Eliminar</button>
     </div>
 }

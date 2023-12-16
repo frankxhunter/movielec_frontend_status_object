@@ -3,7 +3,7 @@ import  axios  from "axios";
 import  urls  from "../../urls.json"
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { Formulario } from "../components/Formulario";
-import { useEffect, useState } from "react";
+import { axiosInstance } from "../methods";
 
 
 
@@ -26,18 +26,6 @@ export async function loader ({params}){
 
 export default function ModificateData() {
 
-    const [axiosInstance, setAxiosInstance] = useState(null);
-    
-    
-    useEffect(()=>{
-        setAxiosInstance(
-            axios.create({
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem("password")}`,
-                },
-            }))
-    },[])
     const navigate = useNavigate();       
     
     const getData = ()=>{
@@ -48,7 +36,8 @@ export default function ModificateData() {
 
     async function updateData({data,id}){
         try{
-            const newData = await axiosInstance.put(`${urls.update}/${id}`, data)
+            const axios = axiosInstance();
+            const newData = await axios.put(`${urls.update}/${id}`, data)
             console.log(newData)
             navigate("/admin")
             alert("La ficha ha sido actualizada")
@@ -57,7 +46,7 @@ export default function ModificateData() {
                 console.log("hola")
                 navigate("/admin")
             }
-            console.log(error.response.data)
+            console.log(error)
         }
         
     }
