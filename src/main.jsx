@@ -12,26 +12,34 @@ import {
 
 import {loader as loaderToModificate} from "./routes/modificateData"
 import './index.css'
+import { MainView } from './routes/mainView'
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <AppUser/>,
+    path : "/",
+    element: <MainView/>,
+    children: [
+      {
+        path: "/",
+        element: <AppUser/>,
+      },
+      {
+        path: "/admin",
+        element: <AppAdmin/>
+      },
+      {
+        path: "/editAdmin/:id",
+        element: <ModificateData/>,
+        loader: loaderToModificate,
+      },
+      {
+        path: "/createAdmin",
+        element: <CreateData/>,
+        loader: loaderToModificate,
+      }
+    ]
   },
-  {
-    path: "/admin",
-    element: <AppAdmin/>
-  },
-  {
-    path: "/editAdmin/:id",
-    element: <ModificateData/>,
-    loader: loaderToModificate,
-  },
-  {
-    path: "/createAdmin",
-    element: <CreateData/>,
-    loader: loaderToModificate,
-  }
+  
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -24,6 +24,7 @@ export function CardEdit({ orden, cliente, fechaPrevista, estado, notas, numeroT
 
     return <div className="card">
         <h3 className="card_status">{estado}</h3>
+        <img src="https://drive.google.com/uc?export=download&id=1-AGZLG9CxDVqNc-euAbCnmykGiUurN24" alt="e-bike" style={{"width":"100px"}} />
         <div className="card_orden" >{orden}</div>
         <div className="card_cliente" >{cliente}</div>
         <div className="card_numeroTelefonico">{numeroTelefonico}</div>
