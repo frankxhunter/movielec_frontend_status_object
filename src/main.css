@@ -1,0 +1,72 @@
+:root{
+    --yellowColor: #FCC005;
+    --darkColor: #101418;
+    --whiteColor: #FFFBFE; 
+    --grayColor: #2d3238;
+}
+*{
+    margin: 0;
+    color: white;
+}
+body{
+    background-color: var(--darkColor);
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 15px;
+    height: 60px;
+    background-color: var(--grayColor);
+}
+.img_header img{
+    width: 50px;
+    border-radius: 50%;
+}
+.movielec_header{
+    font-size: 35px;
+    letter-spacing: 3px; 
+    color: var(--yellowColor);
+}
+.main{
+   width: 250px;
+   margin:auto;
+   margin-top: 30px;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.filterPhoneNumber{
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 2px 3px;
+}
+.input_filterPhoneNumber{
+    outline: none;
+    border: none;
+    background-color: transparent;
+
+}
+.button_filterPhoneNumber{
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+
+}
+
+
+.button_filterPhoneNumber:hover > .icon_filterPhoneNumber *{
+    color: var(--yellowColor);
+}

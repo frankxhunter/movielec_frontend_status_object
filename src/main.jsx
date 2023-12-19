@@ -11,7 +11,7 @@ import {
 } from "react-router-dom"
 
 import {loader as loaderToModificate} from "./routes/modificateData"
-import './index.css'
+import './main.css'
 import { MainView } from './routes/mainView'
 
 const router = createBrowserRouter([

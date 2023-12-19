@@ -4,7 +4,7 @@ import { Footer } from "../components/footer"
 export function MainView(){
     return <>
     <Header></Header>
-    <div>
+    <div className="main">
         <Outlet></Outlet>
     </div>
     <Footer></Footer>

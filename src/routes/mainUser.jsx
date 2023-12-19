@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { InputNumber } from "../components/input";
+import { FilterPhoneNumber } from "../components/filterPhoneNumber";
 import { Card } from "../components/card";
 import axios from "axios";
 import urls from "../../urls.json"
@@ -19,7 +19,7 @@ export default function App() {
   }
 
   return <>
-    <InputNumber changeNumber={fetchData} />
+    <FilterPhoneNumber changeNumber={fetchData} />
     {ordens.map((orden)=>(
       <Card 
       key={orden.id}
