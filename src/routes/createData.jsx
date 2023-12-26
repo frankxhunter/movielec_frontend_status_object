@@ -2,7 +2,7 @@
 import axios from "axios";
 import urls from "../../urls.json"
 import { useNavigate } from "react-router-dom";
-import { Formulario } from "../components/Formulario";
+import { Formulario } from "../components/form";
 
 const axiosInstance = axios.create({
     headers: {
@@ -20,6 +20,7 @@ export default function CreateData() {
 
     async function createData({ data }) {
         try {
+            console.log(data)
             const newData = await axiosInstance.post(`${urls.create}`, data)
             console.log("hola")
             console.log(newData)

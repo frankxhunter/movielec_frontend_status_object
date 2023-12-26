@@ -5,7 +5,7 @@ export function MainView(){
     return <>
     <Header></Header>
     <div className="main">
-        <Outlet></Outlet>
+        <Outlet ></Outlet>
     </div>
     <Footer></Footer>
     </> 

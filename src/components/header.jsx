@@ -1,5 +1,4 @@
-import { faHamburger, faHelmetUn } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CiMenuBurger } from "react-icons/ci";
 
 
 export function Header() {
@@ -11,7 +10,7 @@ export function Header() {
         </div>
         <div className="movielec_header">MOVIELEC</div>
         <div>
-         <FontAwesomeIcon icon={faHamburger}/>
+        <CiMenuBurger />
         </div>
      </header>
   );

@@ -1,42 +1,92 @@
-:root{
+:root {
     --yellowColor: #FCC005;
     --darkColor: #101418;
-    --whiteColor: #FFFBFE; 
+    --whiteColor: #FFFBFE;
     --grayColor: #2d3238;
+    --instagram: linear-gradient(#f9ce34, #ee2a7b, #6228d7);
+    --instagram_text: #F04271;
+    --whatsapp: #1DAA61
 }
-*{
+
+* {
     margin: 0;
     color: white;
 }
-body{
+
+body {
     background-color: var(--darkColor);
 }
-.header{
+
+/*Header*/
+.header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 2px 15px;
-    height: 60px;
+    height: 55px;
+
     background-color: var(--grayColor);
 }
-.img_header img{
+
+.img_header img {
     width: 50px;
     border-radius: 50%;
 }
-.movielec_header{
+
+.movielec_header {
     font-size: 35px;
-    letter-spacing: 3px; 
+    letter-spacing: 3px;
     color: var(--yellowColor);
 }
-.main{
-   width: 250px;
-   margin:auto;
-   margin-top: 30px;
-   flex-direction: column;
-   justify-content: center;
+
+/*Footer*/
+.footer {
+    background-color: var(--grayColor);
+    min-height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2px 15px;
+    box-sizing: border-box;
+    width: 100%;
+
 }
 
-.filterPhoneNumber{
+.followUs_footer, .contactUs_footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.instagram_footer {
+    display: flex;
+}
+
+.instagram_footer span {
+    margin-left: 2px;
+
+}
+
+.icon_instagram {
+    background: var(--instagram);
+    border-radius: 5px;
+}
+.icon_Whatsapp{
+    background: var(--whatsapp);
+    border-radius: 5px;
+}
+
+.main {
+    width: 250px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+}
+
+
+.filterPhoneNumber {
     display: flex;
     justify-content: space-between;
     max-width: 200px;
@@ -45,13 +95,15 @@ body{
     backdrop-filter: blur(10px);
     padding: 2px 3px;
 }
-.input_filterPhoneNumber{
+
+.input_filterPhoneNumber {
     outline: none;
     border: none;
     background-color: transparent;
 
 }
-.button_filterPhoneNumber{
+
+.button_filterPhoneNumber {
     border-radius: 50%;
     height: 20px;
     width: 20px;
@@ -67,6 +119,59 @@ body{
 }
 
 
-.button_filterPhoneNumber:hover > .icon_filterPhoneNumber *{
+.button_filterPhoneNumber:hover>.icon_filterPhoneNumber * {
     color: var(--yellowColor);
+}
+
+
+/*Card*/
+.card {
+    background-color: var(--grayColor);
+    width: 300px;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: -26px 27px 23px 0px rgba(0, 0, 0, 0.75);
+}
+
+.card div {
+    display: flex;
+    min-width: 80%;
+    justify-content: space-between;
+}
+
+.card_fechaPrevista {
+    flex-direction: column;
+    align-items: center;
+}
+
+.card_notas {
+    flex-direction: column;
+    border: 1px dotted white;
+    padding: 7px;
+    width: 250px;
+    border-radius: 20px;
+
+}
+
+.img_card {
+    width: 250px;
+    border-radius: 20px;
+    border: 3px solid var(--yellowColor);
+
+}
+
+/*Formulario*/
+.form_container_field *{
+    background-color: var(--grayColor);
+}
+.form_container_field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 4px;
 }

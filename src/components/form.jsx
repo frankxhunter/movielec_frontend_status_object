@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Formik, Form, Field, ErrorMessage } from "formik"
+import { defaultImagen, getLinkOfImagenToDrive } from "../methods"
+import { useState } from "react"
 
 
 // eslint-disable-next-line react/prop-types
-export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrevista, notas, id, fetchingData, cancelAction, status }) {
+export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrevista, notas, imageUrl, id, fetchingData, cancelAction, status }) {
+    const [imagen, setImagen] = useState(imageUrl =="" || imageUrl == null ? defaultImagen: imageUrl)
+    console.log(imagen)
     return (
         <Formik
             initialValues={{
@@ -12,6 +16,7 @@ export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrev
                 cliente: cliente ?? "",
                 numeroTelefonico: numeroTelefonico ?? "",
                 fechaPrevista: fechaPrevista ?? "",
+                imageUrl: imageUrl ?? "",
                 notas: notas ?? ""
             }}
             onSubmit={(values, { resetForm }) => {
@@ -21,11 +26,12 @@ export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrev
                     cliente: values.cliente,
                     numeroTelefonico: values.numeroTelefonico,
                     fechaPrevista: values.fechaPrevista,
+                    imageUrl: values.imageUrl === defaultImagen? null: values.imageUrl,
                     notas: values.notas
                 }
                 fetchingData({ data, id })
                 resetForm()
-            } }
+            }}
             validate={(values) => {
                 let errors = {}
                 if (!values.estado) {
@@ -55,12 +61,22 @@ export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrev
                 else if (!/^\d{4}-\d{2}-\d{2}$/.test(values.fechaPrevista)) {
                     errors.fechaPrevista = "El formato de la fecha es invalido"
                 }
+                if(values.imageUrl && values.imageUrl !== ""){
+                    const result = getLinkOfImagenToDrive(values.imageUrl);
+                    if(result.success){
+                        setImagen(result.link)
+                    }else{
+                        errors.imageUrl = result.error
+                    }
+                }else{
+                     setImagen(defaultImagen)
+                }
                 return errors
-            } }
+            }}
         >
             {() => (
                 <Form>
-                    <div>
+                    <div className="form_container_field">
                         <label htmlFor="estado">Estado: </label>
                         <Field
                             as="select"
@@ -76,7 +92,7 @@ export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrev
                         <ErrorMessage name="estado" />
 
                     </div>
-                    <div>
+                    <div className="form_container_field">
                         <label htmlFor="orden">Numero de orden: </label>
                         <Field
                             type="number"
@@ -85,22 +101,29 @@ export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrev
                         <ErrorMessage name="orden" />
 
                     </div>
-                    <div>
+                    <div className="form_container_field">
                         <label htmlFor="cliente">Nombre del cliente: </label>
                         <Field type="text" name="cliente" placeholder="Josepha García" />
                         <ErrorMessage name={"cliente"} />
                     </div>
-                    <div>
+                    <div className="form_container_field">
                         <label htmlFor="numeroTelefonico">Numero de telefono: </label>
                         <Field type="text" name="numeroTelefonico" placeholder="633995167" />
                         <ErrorMessage name={"numeroTelefonico"} />
                     </div>
-                    <div>
+                    <div className="form_container_field">
                         <label htmlFor="fechaPrevista">Fecha prevista: </label>
                         <Field type="date" name="fechaPrevista" placeholder="2023-12-24" />
                         <ErrorMessage name={"fechaPrevista"} />
                     </div>
-                    <div>
+                    <div className="form_container_field">
+                        <label htmlFor="imageUrl">Imagen</label>
+                        <Field type="text" name="imageUrl" placeholder="Link de imagen de drive" ></Field>
+                        <img src={imagen} alt="Imagen de drive" style={{width: "250px", height:"250px"}}/>
+                        <ErrorMessage name="imageUrl" />
+
+                    </div>
+                    <div className="form_container_field">
                         <label htmlFor="notas">Notas: </label>
                         <Field as="textarea" name="notas" placeholder="Notas adicionales" />
 

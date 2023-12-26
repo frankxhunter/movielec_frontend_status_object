@@ -2,7 +2,7 @@
 import  axios  from "axios";
 import  urls  from "../../urls.json"
 import { useNavigate, useLoaderData } from "react-router-dom";
-import { Formulario } from "../components/Formulario";
+import { Formulario } from "../components/form";
 import { axiosInstance } from "../methods";
 
 
@@ -52,6 +52,7 @@ export default function ModificateData() {
     }
 
     return <>
+    {console.log(getData())}
        <Formulario 
        {...getData()}
        fetchingData={updateData}

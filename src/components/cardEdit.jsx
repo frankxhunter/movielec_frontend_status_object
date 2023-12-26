@@ -1,9 +1,9 @@
 import urls from "../../urls.json"
 
 import { useNavigate } from "react-router-dom"
-import { axiosInstance } from "../methods"
+import { axiosInstance, defaultImagen } from "../methods"
 // eslint-disable-next-line react/prop-types
-export function CardEdit({ orden, cliente, fechaPrevista, estado, notas, numeroTelefonico, id,  update }) {
+export function CardEdit({ orden, cliente, fechaPrevista, estado, notas, numeroTelefonico, imageUrl, id,  update }) {
 
     const navigate = useNavigate()
     async function actionDelete() {
@@ -24,7 +24,7 @@ export function CardEdit({ orden, cliente, fechaPrevista, estado, notas, numeroT
 
     return <div className="card">
         <h3 className="card_status">{estado}</h3>
-        <img src="https://drive.google.com/uc?export=download&id=1-AGZLG9CxDVqNc-euAbCnmykGiUurN24" alt="e-bike" style={{"width":"100px"}} />
+        <img src={imageUrl ?? defaultImagen} alt="e-bike" style={{"width":"100px"}} />
         <div className="card_orden" >{orden}</div>
         <div className="card_cliente" >{cliente}</div>
         <div className="card_numeroTelefonico">{numeroTelefonico}</div>
