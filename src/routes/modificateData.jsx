@@ -7,7 +7,7 @@ import { axiosInstance } from "../methods";
 
 
 
-const status =  (await axios(urls.getStatus)).data
+//const status =  (await axios(urls.getStatus)).data
 
 async function  getData(id) {
     const response = await axios(urls.getOrdens + "/" + id, {
@@ -50,13 +50,16 @@ export default function ModificateData() {
         }
         
     }
+    async function getStatus(){
+        return (await axios(urls.getStatus)).data
+    }
 
     return <>
     {console.log(getData())}
        <Formulario 
        {...getData()}
        fetchingData={updateData}
-       status={status}
+       status={getStatus()}
        cancelAction={()=>{navigate("/admin")}}
        />
     </>

@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
     },
 });
 
-const status = (await axiosInstance(urls.getStatus)).data
+//const status = (await axiosInstance(urls.getStatus)).data
 
 export default function CreateData() {
 
@@ -34,12 +34,15 @@ export default function CreateData() {
         }
 
     }
+    async function getStatus(){
+        return (await axios(urls.getStatus)).data
+    }
    
 
     return <>
         <Formulario
             fetchingData={createData}
-            status={status}
+            status={getStatus()}
             cancelAction ={() => {navigate("/admin")}
             }
         />
