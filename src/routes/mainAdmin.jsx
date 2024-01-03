@@ -49,6 +49,7 @@ export default function App() {
                     changeSearchAvanced={changeSearchAvanced}
                     sort={orderBy}
                     handleSort={setOrderBy}
+                    fetchData= {fetchData}
                 />
 
                 {data.map((orden) => {

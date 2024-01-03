@@ -14,7 +14,7 @@ export function Footer() {
         <div className="contactUs_footer">
             <div>Contantanos por:</div>
             <span className="whatsapp_footer">
-                <FaWhatsapp className="icon_Whatsapp"/>  <span>Whatsapp</span>
+                <FaWhatsapp className="icon_Whatsapp"/>  <span>+34 645 37 88 93</span>
             </span>
         </div>
 

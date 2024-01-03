@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FilterPhoneNumber } from "../components/filterPhoneNumber";
+import { Filter } from "../components/filterPhoneNumber";
 import { Card } from "../components/card";
 import axios from "axios";
 import urls from "../../urls.json"
@@ -10,7 +10,6 @@ export default function App() {
   async function fetchData(numberFind) {
     try {
       const response = await axios.get(urls.getOrdens + "/" + numberFind)
-      console.log(response)
       setOrdens(response.data)
     } catch (error) {
       setOrdens([])
@@ -19,15 +18,12 @@ export default function App() {
   }
 
   return <>
-    <FilterPhoneNumber changeNumber={fetchData} />
-    {ordens.map((orden)=>(
-      <Card 
-      key={orden.id}
-      orden={orden.orden} 
-      cliente={orden.cliente} 
-      fechaPrevista={orden.fechaPrevista}
-      estado={orden.estado}
-      notas={orden.notas} />
+      <Filter changeNumber={fetchData} onlyNumber={true} description={"Numero de telefono"} />
+      {ordens.map((orden) => (
+        <Card
+          {...orden}
+          key={orden.id}
+        />
       ))}
   </>
 }

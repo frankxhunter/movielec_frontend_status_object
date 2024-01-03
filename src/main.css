@@ -5,7 +5,9 @@
     --grayColor: #2d3238;
     --instagram: linear-gradient(#f9ce34, #ee2a7b, #6228d7);
     --instagram_text: #F04271;
-    --whatsapp: #1DAA61
+    --whatsapp: #1DAA61;
+    --delete: #ff0000;
+    --edit: #b7901c;
 }
 
 * {
@@ -49,6 +51,7 @@ body {
     padding: 2px 15px;
     box-sizing: border-box;
     width: 100%;
+    margin-top: 10px;
 
 }
 
@@ -85,9 +88,15 @@ body {
     min-height: 80vh;
 }
 
-
-.filterPhoneNumber {
+/*Filter*/
+.filter_content{
     display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.filter {
+    display: flex;
+    gap: 3px;
     justify-content: space-between;
     max-width: 200px;
     border-radius: 10px;
@@ -96,17 +105,17 @@ body {
     padding: 2px 3px;
 }
 
-.input_filterPhoneNumber {
+.input_filter {
     outline: none;
     border: none;
     background-color: transparent;
 
 }
 
-.button_filterPhoneNumber {
+.button_filter {
     border-radius: 50%;
     height: 20px;
-    width: 20px;
+    width: 40px;
     outline: none;
     border: none;
     background-color: transparent;
@@ -119,29 +128,87 @@ body {
 }
 
 
-.button_filterPhoneNumber:hover>.icon_filterPhoneNumber * {
+.button_filter:hover>.icon_filter * {
     color: var(--yellowColor);
 }
 
+.checkbox_filter:hover{
+    filter: brightness(0.5);
+}
+
+.orderBy_filter select{
+    background-color: var(--grayColor);
+}
+.orderBy_filter select:hover{
+    filter: brightness(0.5);
+
+}
+
+/*Add button*/
+.addButton{
+    background-color: var(--grayColor);
+    padding: 5px;
+    margin-bottom: 15px;
+    font-size: 10px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    border: none;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.iconAdd_buttonAdd{
+    font-size: 30px;
+
+}
+.iconAdd_buttonAdd path{
+    background-color: var(--grayColor);
+    font-size: 20px;
+    color: var(--yellowColor);
+
+}
+.addButton:hover{
+    filter: brightness(0.8);
+}
 
 /*Card*/
 .card {
     background-color: var(--grayColor);
     width: 300px;
-    margin: 20px;
+    margin: 20px;;
     padding: 10px;
-    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     gap: 10px;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
     box-shadow: -26px 27px 23px 0px rgba(0, 0, 0, 0.75);
+    animation: slideDown 1s ease-in-out;
+    position: relative;
+
 }
 
+@keyframes slideDown {
+    0%{
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .card div {
     display: flex;
     min-width: 80%;
     justify-content: space-between;
+    
 }
 
 .card_fechaPrevista {
@@ -159,19 +226,141 @@ body {
 }
 
 .img_card {
-    width: 250px;
+    max-height: 250px;
+    max-height: 150px; 
     border-radius: 20px;
     border: 3px solid var(--yellowColor);
+    
 
 }
-
-/*Formulario*/
-.form_container_field *{
+.contentButtons_card{
+    display: flex;
+    justify-content: right !important;
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    
+}
+.contentButtons_card button{
     background-color: var(--grayColor);
+    border: none;
+
 }
+
+.editButton_card:hover>.iconEdit path{
+    color: var(--whatsapp);
+}
+.deleteButton_card:hover> .iconDelete path{
+    color: var(--delete);
+}
+/*Password*/
+.container_password{
+    background-color: var(--grayColor);
+    border: 1px solid var(--yellowColor);
+    border-radius: 3px;
+
+    padding: 8px;
+}
+.message_password, .errorMessage_password{
+    font-size: 15px;
+    margin: 3px;
+
+}
+.errorMessage_password{
+    color: var(--delete);
+    animation: slideDown 1s ease-in-out;
+}
+.form_password{
+    display: flex;
+}
+.input_password{
+    margin: 3px;
+    background-color: var(--grayColor);
+    border: none;
+    border: 1px solid var(--yellowColor);
+    border-radius: 3px;
+    outline: none;
+}
+.accept_password{
+    font-size: 10px;
+    border: 1px solid var(--yellowColor);
+    background-color: var(--grayColor);
+    margin: 3px;
+
+}
+/*Formulario*/
+.formik{
+    display: grid;
+    gap: 10px;
+    border: 1px solid var(--yellowColor);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: -26px 27px 23px 0px rgba(0, 0, 0, 0.75);
+    background-color: var(--grayColor);
+    width: 300px;
+    
+}
+.formik h2{
+    justify-self: center;
+}
+
+/*Formulario con formik*/
 .form_container_field {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin: 4px;
+}
+.input_formik{
+    background-color: var(--darkColor);
+    border: none;
+    width: 95%;
+    border-radius: 13px;
+    padding: 3px;
+}
+.input_formik:focus{
+    outline: var(--yellowColor);
+}
+.error_formik{
+    color: var(--delete);
+    font-size: 13px;
+    width: 80%;
+
+}
+.content_image_formik{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image_formik{
+    max-width: 150px;
+    max-height: 200px;
+    margin-top: 15px;
+    border: 2px solid var(--yellowColor);
+}
+
+.formik_buttonsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 5px;
+}
+.formik_acceptButton{
+    background-color: var(--whatsapp);
+    width: 50%;
+}
+.formik_cancelButton{
+    background-color: var(--delete);
+    width: 50%;
+    filter: brightness(0.7);    
+
+}
+
+.button{
+    border-radius: 8px;
+    border: none;
+    
+}
+.button:hover{
+    filter: brightness(1.2);    
 }

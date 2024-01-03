@@ -6,7 +6,7 @@ import { useState } from "react"
 
 // eslint-disable-next-line react/prop-types
 export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrevista, notas, imageUrl, id, fetchingData, cancelAction, status }) {
-    const [imagen, setImagen] = useState(imageUrl =="" || imageUrl == null ? defaultImagen: imageUrl)
+    const [imagen, setImagen] = useState(imageUrl == "" || imageUrl == null ? defaultImagen : imageUrl)
     console.log(imagen)
     return (
         <Formik
@@ -26,7 +26,7 @@ export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrev
                     cliente: values.cliente,
                     numeroTelefonico: values.numeroTelefonico,
                     fechaPrevista: values.fechaPrevista,
-                    imageUrl: values.imageUrl === defaultImagen? null: values.imageUrl,
+                    imageUrl: values.imageUrl === defaultImagen ? null : values.imageUrl,
                     notas: values.notas
                 }
                 fetchingData({ data, id })
@@ -61,75 +61,117 @@ export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrev
                 else if (!/^\d{4}-\d{2}-\d{2}$/.test(values.fechaPrevista)) {
                     errors.fechaPrevista = "El formato de la fecha es invalido"
                 }
-                if(values.imageUrl && values.imageUrl !== ""){
+                if (values.imageUrl && values.imageUrl !== "") {
                     const result = getLinkOfImagenToDrive(values.imageUrl);
-                    if(result.success){
+                    if (result.success) {
                         setImagen(result.link)
-                    }else{
+                    } else {
                         errors.imageUrl = result.error
                     }
-                }else{
-                     setImagen(defaultImagen)
+                } else {
+                    setImagen(defaultImagen)
                 }
                 return errors
             }}
         >
             {() => (
-                <Form>
-                    <div className="form_container_field">
-                        <label htmlFor="estado">Estado: </label>
-                        <Field
+                <Form className="formik">
+                    <h2>{id? "Modifica el registro": "Crea un registro"}</h2>
+                    <div className="formik_container_field">
+                        <label className="label_formik" htmlFor="estado">Estado: </label>
+                        <Field className="input_formik"
                             as="select"
                             name="estado"
 
                         >
-                            <option value="">Selecione un estado</option>
+                            <option value="" className="input_formik">Selecione un estado</option>
                             {status.map((e) => (
                                 <option value={e} key={e} label={e} />
                             ))}
 
                         </Field>
-                        <ErrorMessage name="estado" />
-
+                        <div className="error_formik">
+                            <ErrorMessage name="estado" />
+                        </div>
                     </div>
-                    <div className="form_container_field">
-                        <label htmlFor="orden">Numero de orden: </label>
+                    <div className="formik_container_field">
+                        <label className="label_formik" htmlFor="orden">Numero de orden: </label>
                         <Field
+                            autoComplete="off"
+                            className="input_formik"
                             type="number"
                             name="orden"
                             placeholder="798" />
-                        <ErrorMessage name="orden" />
+                        <div className="error_formik">
+                            <ErrorMessage name="orden" />
+                        </div>
+                    </div>
+                    <div className="formik_container_field">
+                        <label className="label_formik" htmlFor="cliente">Nombre del cliente: </label>
+                        <Field 
+                        className="input_formik"
+                        autoComplete="off"
+                        type="text" 
+                        name="cliente" 
+                        placeholder="Josepha García" />
+                        <div className="error_formik">
+                            <ErrorMessage name="cliente" />
+                        </div>
+                    </div>
+                    <div className="formik_container_field">
+                        <label className="label_formik" htmlFor="numeroTelefonico">Numero de telefono: </label>
+                        <Field 
+                        className="input_formik" 
+                        type="text" 
+                        name="numeroTelefonico" 
+                        placeholder="633995167"
+                        autoComplete="off"
+                        />
+                        <div className="error_formik">
+                            <ErrorMessage name="numeroTelefonico" />
+                        </div>
+                    </div>
+                    <div className="formik_container_field">
+                        <label className="label_formik" htmlFor="fechaPrevista">Fecha prevista: </label>
+                        <Field 
+                        className="input_formik" 
+                        type="date" 
+                        name="fechaPrevista" 
+                        placeholder="2023-12-24" 
+                        autoComplete="off"
+                        />
+                        <div className="error_formik">
+                            <ErrorMessage name="fechaPrevista" />
+                        </div>
+                    </div>
+                    <div className="formik_container_field">
+                        <label className="label_formik" htmlFor="imageUrl">Imagen</label>
+                        <Field 
+                        className="input_formik" 
+                        type="text" 
+                        name="imageUrl" 
+                        placeholder="Link de imagen de drive" 
+                        autoComplete="off"
+                        />
+                        <div className="content_image_formik">
+                        <img className="image_formik" src={imagen} alt="Imagen de drive" style={{ width: "250px", height: "250px" }} />
+
+                        </div>
+                    
+                        <div className="error_formik">
+                            <ErrorMessage name="imageUrl" />
+                        </div>
 
                     </div>
-                    <div className="form_container_field">
-                        <label htmlFor="cliente">Nombre del cliente: </label>
-                        <Field type="text" name="cliente" placeholder="Josepha García" />
-                        <ErrorMessage name={"cliente"} />
-                    </div>
-                    <div className="form_container_field">
-                        <label htmlFor="numeroTelefonico">Numero de telefono: </label>
-                        <Field type="text" name="numeroTelefonico" placeholder="633995167" />
-                        <ErrorMessage name={"numeroTelefonico"} />
-                    </div>
-                    <div className="form_container_field">
-                        <label htmlFor="fechaPrevista">Fecha prevista: </label>
-                        <Field type="date" name="fechaPrevista" placeholder="2023-12-24" />
-                        <ErrorMessage name={"fechaPrevista"} />
-                    </div>
-                    <div className="form_container_field">
-                        <label htmlFor="imageUrl">Imagen</label>
-                        <Field type="text" name="imageUrl" placeholder="Link de imagen de drive" ></Field>
-                        <img src={imagen} alt="Imagen de drive" style={{width: "250px", height:"250px"}}/>
-                        <ErrorMessage name="imageUrl" />
+                    <div className="formik_container_field">
+                        <label className="label_formik" htmlFor="notas">Notas: </label>
+                        <Field className="input_formik" as="textarea" name="notas" placeholder="Notas adicionales" />
 
                     </div>
-                    <div className="form_container_field">
-                        <label htmlFor="notas">Notas: </label>
-                        <Field as="textarea" name="notas" placeholder="Notas adicionales" />
-
+                    <div className="formik_buttonsContainer">
+                    <input type="submit" value="Aceptar" className="formik_acceptButton button"/>
+                    <button type="button" onClick={cancelAction} className="formik_cancelButton button" >Cancel</button>
                     </div>
-                    <input type="submit" value="Aceptar" />
-                    <button type="button" onClick={cancelAction} >Cancel</button>
                 </Form>
             )}
         </Formik>

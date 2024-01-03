@@ -7,16 +7,20 @@ function setPasswordInLocalStorage(password) {
 export function Password({ message, update }) {
     const [password, setPassword] = useState(localStorage.getItem("password"));
 
-    function handleClick() {
+    function handleClick(e) {
+        e.preventDefault()
         setPasswordInLocalStorage(password)
-        console.log("password update")
         update()
+        setPassword("")
+
     }
 
-    return <div>
-        {message ? <div>{message}</div> : ""}
-        <div>Introduzca su clave de administrador</div>
-        <input type="text" value={password} onChange={e => setPassword(e.target.value)} />
-        <button onClick={handleClick} >Aceptar</button>
+    return <div className="container_password">
+        <div className="message_password">Introduzca su clave de administrador</div>
+        <form onSubmit={handleClick} className="form_password">
+            <input className="input_password" type="text" value={password} onChange={e => setPassword(e.target.value)} />
+            <button className="accept_password" type="submit" >Aceptar</button>
+        </form>
+        {message ? <div className="errorMessage_password">{message}</div> : ""}
     </div>
 }
