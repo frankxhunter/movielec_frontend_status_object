@@ -53,3 +53,5 @@ function extractID(originalAddress){
 }
 
 export const defaultImagen = "https://drive.google.com/uc?export=download&id=1-AGZLG9CxDVqNc-euAbCnmykGiUurN24"
+
+export const logo = "https://drive.google.com/uc?export=download&id=1J02UvUZ8CBZlmTD0aynaNUFHyRB8OIPA"
