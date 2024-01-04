@@ -6,7 +6,7 @@ export function Header() {
   return (
      <header className="header">
         <div className="img_header">
-        <img src="src\assets\logoMovielec.png" alt="" />
+        <img src="public\logoMovielec.png" alt="" />
         </div>
         <div className="movielec_header">MOVIELEC</div>
         <div>
