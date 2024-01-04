@@ -2,6 +2,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 
 export function Footer() {
+
     return <footer className="footer">
         <div className="followUs_footer">
             <div>
@@ -17,6 +18,7 @@ export function Footer() {
                 <FaWhatsapp className="icon_Whatsapp"/>  <span>+34 645 37 88 93</span>
             </span>
         </div>
+
 
     </footer>
 }

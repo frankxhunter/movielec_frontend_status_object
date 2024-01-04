@@ -1,13 +1,26 @@
 /* eslint-disable react/prop-types */
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { defaultImagen, getLinkOfImagenToDrive } from "../methods"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import urls from "../../urls.json"
+import axios from "axios"
 
 
 // eslint-disable-next-line react/prop-types
-export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrevista, notas, imageUrl, id, fetchingData, cancelAction, status }) {
+export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrevista, notas, imageUrl, id, fetchingData, cancelAction, }) {
     const [imagen, setImagen] = useState(imageUrl == "" || imageUrl == null ? defaultImagen : imageUrl)
-    console.log(imagen)
+    const [asyncSelects, setAsyncSelects] = useState()
+
+    async function selects(){
+        const status = await axios(urls.getStatus)
+        const selects=  status.data.map((e) => (
+            <option value={e} key={e} label={e} />
+        ))
+        setAsyncSelects(selects)
+    }
+    useEffect(()=>{
+        selects()
+    },[])
     return (
         <Formik
             initialValues={{
@@ -85,9 +98,7 @@ export function Formulario({ estado, orden, cliente, numeroTelefonico, fechaPrev
 
                         >
                             <option value="" className="input_formik">Selecione un estado</option>
-                            {status.map((e) => (
-                                <option value={e} key={e} label={e} />
-                            ))}
+                            {asyncSelects}
 
                         </Field>
                         <div className="error_formik">

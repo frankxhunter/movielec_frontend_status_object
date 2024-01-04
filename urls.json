@@ -1,8 +1,8 @@
 {
-    "getOrdens": "http://localhost:3000/objects",
-    "getAllAdmin": "http://localhost:3000/admin/objects",
-    "delete": "http://localhost:3000/admin/objects",
-    "getStatus": "http://localhost:3000/objects/status",
-    "create": "http://localhost:3000/admin/objects",
-    "update": "http://localhost:3000/admin/objects"
+    "getOrdens": "https://movielecservice-dev-dnqm.1.us-1.fl0.io/objects",
+    "getAllAdmin": "https://movielecservice-dev-dnqm.1.us-1.fl0.io/admin/objects",
+    "delete": "https://movielecservice-dev-dnqm.1.us-1.fl0.io/admin/objects",
+    "getStatus": "https://movielecservice-dev-dnqm.1.us-1.fl0.io/objects/status",
+    "create": "https://movielecservice-dev-dnqm.1.us-1.fl0.io/admin/objects",
+    "update": "https://movielecservice-dev-dnqm.1.us-1.fl0.io/admin/objects"
 }
