@@ -230,7 +230,6 @@ body {
 
 .img_card {
     max-width: 200px;
-    max-height: 250px;
     max-height: 150px; 
     border-radius: 20px;
     border: 3px solid var(--yellowColor);
@@ -272,7 +271,7 @@ body {
 }
 .errorMessage_password{
     color: var(--delete);
-    animation: slideDown 1s ease-in-out;
+    animation: slideDown .3s ease-in-out;
 }
 .form_password{
     display: flex;
@@ -331,16 +330,18 @@ body {
 
 }
 .content_image_formik{
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .image_formik{
-    max-width: 150px;
-    max-height: 200px;
+    max-width: 200px;
+    max-height: 150px;
     margin-top: 15px;
-    border: 2px solid var(--yellowColor);
+    border: 3px solid var(--yellowColor);
+    border-radius: 20px;
+
+
 }
 
 .formik_buttonsContainer{

@@ -1,12 +1,36 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { useEffect, useState } from "react";
 // eslint-disable-next-line react/prop-types
-export function FilterForm({ filter, setFilter, isAvanced, changeSearchAvanced, sort, handleSort, fetchData }) {
+export function FilterForm({ fetchData }) {
+    const [filter, setFilter] = useState("");
+    const [isAvanced, setIsAvanced] = useState(false);
+    const [sort, setSort] = useState("orden")
     const navigate = useNavigate()
+    
+    function changeSearchAvanced() {
+        setIsAvanced(!isAvanced)
+    }
+
+    useEffect(()=>{
+        if(filter.length == 0){
+            handlefetch()
+        }
+    },[filter])
+
+    useEffect(()=>{
+            handlefetch()
+    },[sort])
+
+    function handlefetch(){
+        fetchData(filter, isAvanced, sort);
+    }
+  
     function handleAction(e){
         e.preventDefault();
-        fetchData();
+        handlefetch()
     }
     return <>
         <button onClick={() => { navigate("/createAdmin") }} className="addButton" ><IoIosAddCircleOutline className="iconAdd_buttonAdd"/></button>
@@ -35,7 +59,7 @@ export function FilterForm({ filter, setFilter, isAvanced, changeSearchAvanced, 
                 <select
                     value={sort}
                     onChange={(e) => {
-                        handleSort(e.target.value)
+                        setSort(e.target.value)
                     }}
                 >
                     <option value="orden">Numero de orden</option>

@@ -13,6 +13,7 @@ import {
 import {loader as loaderToModificate} from "./routes/modificateData"
 import './main.css'
 import { MainView } from './routes/mainView'
+import { Password } from './routes/password'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <AppAdmin/>
+      },
+      {
+        path:"/validate",
+        element: <Password/>
       },
       {
         path: "/editAdmin/:id",

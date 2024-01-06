@@ -1,17 +1,35 @@
 import { useState } from "react";
+import { axiosInstance } from "../methods";
+import urls from "../../urls.json"
+import { useNavigate } from "react-router-dom";
 
 function setPasswordInLocalStorage(password) {
     localStorage.setItem("password", password)
 }
 // eslint-disable-next-line react/prop-types
-export function Password({ message, update }) {
+export function Password() {
     const [password, setPassword] = useState(localStorage.getItem("password"));
+    const [message, setMessage]= useState("");
+    const navigate = useNavigate()
 
-    function handleClick(e) {
+    async function handleClick(e) { 
         e.preventDefault()
-        setPasswordInLocalStorage(password)
-        update()
-        setPassword("")
+        setMessage("")
+        
+        try{
+            setPasswordInLocalStorage(password)
+            setPassword("")
+            const result = await axiosInstance().get(urls.getAllAdmin + "/12345")
+            console.log(result.data)
+            navigate("/admin")
+
+
+        }catch(error){
+            if (error.response && error.response.status === 401) {
+                setMessage("Contraseña de administrador invalida, intente nuevamente")
+            }
+            console.log(error)
+        }
 
     }
 
